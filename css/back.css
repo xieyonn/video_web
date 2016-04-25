@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+
+.box{
+    background-color: #FFF;
+    border-radius: 3px;
+    box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #E2E2E2;
+}
+
+.border_box{
+    background-color: #FFF;
+    border-radius: 3px;
+    border: 1px solid #E2E2E2;
+}
+
+.sep20{
+    height: 20px;
+}
+
+.clear{
+    clear: both;
+}
+
+.message{
+    padding: 10px 20px;
+}
+
+#wrapper{
+    background-color: #EDEDED;
+}
+
+#login_form{
+    width: 300px;
+    margin: 90px auto;
+    padding: 10px 20px;
+    border: 1px solid #E2E2E2;
+    background-color: #FFF;
+}
+
+#top{
+    height: 40px;
+    background-color: #505050;
+}
+
+#password_form{
+    width: 300px;
+    margin: 90px auto;
+    padding: 10px 20px;
+    border: 1px solid #E2E2E2;
+}
+
+#logout_message{
+    padding: 90px 20px;
+}
