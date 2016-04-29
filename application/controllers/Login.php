@@ -52,7 +52,7 @@ class Login extends CI_Controller
 			{
 				echo json_encode('密码为空');
 				return;
-			}else if(! (0 == strcmp($_SESSION['login_code'], $form['code'])))
+			}else if(! (0 == strcasecmp($_SESSION['login_code'], $form['code'])))
 			{
 				echo json_encode('验证码错误');
 				return;
@@ -117,7 +117,7 @@ class Login extends CI_Controller
 			$this->load->model('Users_model');
 			if($this->Users_model->verify_password($post['user_name'], $post['old_password']))
 			{
-				$this->Users_model->edit_password($post['user_name'], $post['new_password']);
+				$this->Users_model->update_password($post['user_name'], $post['new_password']);
 				echo json_encode('修改成功');
 			}	
 		}

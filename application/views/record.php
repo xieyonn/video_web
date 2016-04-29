@@ -7,7 +7,7 @@
                 <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-10 col-lg-offset-1">
                     <ol class="breadcrumb">
                         <li><a href="<?php echo base_url()?>">主页</a></li>
-                        <li><a href="<?php echo base_url('index.php/home/my_record')?>">观看记录</a></li>
+                        <li><a href="<?php echo base_url('index.php/home/my_record')?>">学习记录</a></li>
                     </ol>
                 </div>
             </div>

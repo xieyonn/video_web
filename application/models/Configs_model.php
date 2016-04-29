@@ -13,8 +13,8 @@ class Configs_model extends CI_Model
 	function update($item)
 	{
 		$this->load->database();
-		$this->db->where('key_d', $item['key']);
-		$this->db->update($this->table, array('value_d' => $item['value']));
+		$this->db->where('key_d', $item['key_d']);
+		$this->db->update($this->table, array('value_d' => $item['value_d']));
 		$this->db->close();
 	}
 	

@@ -45,7 +45,7 @@ class Login extends CI_Controller
 		}
 		else
 		{
-			echo json_encode(FALSE);
+			echo json_encode('传输数据为空');
 		}
 	}
 }

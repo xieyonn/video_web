@@ -70,7 +70,7 @@ class Admin_manage extends CI_Controller
 		$form = $this->input->post(NULL, TRUE);
 		if(isset($form['user_name']) && (0 != strlen($form['user_name'])))
 		{
-			if('admin' == $post['user_name'])
+			if('admin' == $form['user_name'])
 			{
 				return json_encode('不允许删除超级管理员');
 			}

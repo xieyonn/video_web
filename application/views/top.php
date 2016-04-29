@@ -30,7 +30,7 @@
                       	<span class="caret"></span>
                  	</a>
                  	<ul class="dropdown-menu">
-                 		<li><a href="<?php echo base_url('index.php/home/my_record')?>">观看记录</a></li>
+                 		<li><a href="<?php echo base_url('index.php/home/my_record')?>">学习记录</a></li>
                  		<li><a href="<?php echo base_url('index.php/login/password')?>">修改密码</a></li>
                  		<li role="separator" class="divider"></li>
                 	 	<li><a href="<?php echo base_url('index.php/login/logout')?>">退出登录</a></li>

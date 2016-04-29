@@ -23,7 +23,7 @@ class Test extends CI_Controller
 				'played_percent' => 60,
 		);
 		echo '<pre>';
-		var_dump('aaa' == 'aaa');
+		var_dump($this->Records_model->get_by_user_name('test'));
 		echo '</pre>';
 	}
 }

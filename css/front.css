@@ -12,6 +12,7 @@
     border-radius: 3px;
     border: 1px solid #E2E2E2;
     padding: 15px 25px;
+	box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .sep20{
@@ -19,7 +20,7 @@
 }
 
 #wrapper{
-    background-color: #FFFFFF;
+    background-color: #F6F6F6;
     padding-bottom: 20px;
 }
 

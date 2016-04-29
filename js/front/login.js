@@ -26,12 +26,14 @@ $(document).ready(function(){
     	console.log('a');
         if('' == user_name.val() || '' == password.val())
         {
+			clear();
             message.collapse('show').text('用户名或密码不能为空');
             return;
         }
         
         if('' == code.val())
         {
+			clear();
             message.collapse('show').text('验证码不能为空');
             return;
         }
@@ -51,6 +53,7 @@ $(document).ready(function(){
                 }else{
                     message.collapse('show').text(data);
                     change_code();
+					clear();
                 }
             },
             error:function(XMLHttpRequest){
@@ -72,4 +75,10 @@ $(document).ready(function(){
             }
         });
     }
+	
+	function clear()
+	{
+		user_name.val('');
+		password.val('');
+	}
 });

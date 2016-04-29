@@ -33,8 +33,8 @@ class Records_model extends CI_Model
 	{
 		$this->load->database();
 		$this->db->where('user_name', $user_name);
-		$this->db->order_by('indexing', 'ASC');
-		$this->db->order_by('series_id', 'ASC');			
+		$this->db->order_by('series_id', 'ASC');	
+		$this->db->order_by('indexing', 'ASC');	
 		$data = $this->db->get($this->table)->result_array();
 		$this->db->close();
 		
@@ -43,7 +43,15 @@ class Records_model extends CI_Model
 			$series_id = $data[0]['series_id'];
 			foreach ($data as $item)
 			{			
-				$retval[$series_id][$item['video_id']] = $item;
+				if($item['series_id'] == $series_id)
+				{
+					$retval[$series_id][$item['video_id']] = $item;
+				}
+				else
+				{
+					$retval[$item['series_id']][$item['video_id']] = $item;
+				}
+				
 				$series_id = $item['series_id'];
 			}
 		}else{
