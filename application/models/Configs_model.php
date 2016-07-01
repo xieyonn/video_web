@@ -25,7 +25,7 @@ class Configs_model extends CI_Model
 		$data = $this->db->get($this->table)->row_array();
 		$this->db->close();
 		
-		return $data['value'];
+		return $data['value_d'];
 	}
 	
 	function get_all()

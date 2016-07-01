@@ -1,7 +1,8 @@
 <?php $this->load->view('head');?>
 <?php $this->load->view('top');?>
 <body>
-
+<script src="<?php echo base_url('lib/KindEditor/kindeditor-all-min.js')?>"></script>
+<script src="<?php echo base_url('lib/KindEditor/lang/zh-CN.js')?>"></script>
 		<div id="wrapper">
 			<div class="sep20"></div>
 			<div class="container-fluid">
@@ -53,7 +54,7 @@
                                                 <td>上线时间 :<?php echo $item['update_time']?></td>
                                             </tr>
                                             <tr>
-                                                <td>简介: <?php echo $item['brief']?></td>
+                                                <td><div><?php echo $item['brief']?></div></td>
                                             </tr>
                                         </table>
                                     </div>

@@ -105,11 +105,11 @@ $(document).ready(function(){
                     'preview', '|', 'undo', 'redo', '|','justifyleft', 'justifycenter', 'justifyright',
                     'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent','subscript',
                     'superscript', '|', 'fullscreen', '/','formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-                    'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+                    'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'insertfile',
                     'table', 'hr', 'emoticons', 'anchor', 'link', 'unlink',
                 ],
                 resizeType: 1,
-                uploadJson: base_url + 'index.php/admin/article_manage/upload_image',
+                uploadJson: base_url + 'index.php/admin/article_manage/upload_file',
         };
         window.editor = K.create('#content', options);
     });
@@ -294,11 +294,11 @@ $(document).ready(function(){
                     'preview', '|', 'undo', 'redo', '|','justifyleft', 'justifycenter', 'justifyright',
                     'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent','subscript',
                     'superscript', '|', 'fullscreen', '/','formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
-                    'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image',
+                    'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'insertfile',
                     'table', 'hr', 'emoticons', 'anchor', 'link', 'unlink',
                 ],
                 resizeType: 1,
-                uploadJson: base_url + 'index.php/admin/article_manage/upload_image',
+                uploadJson: base_url + 'index.php/admin/article_manage/upload_file',
         };
         window.modify_editor = K.create('#modify_content', options);
     });

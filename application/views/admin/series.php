@@ -3,6 +3,8 @@
 
 <script src="<?php echo base_url('js/admin/left_menu.js')?>" type="text/javascript"></script>
 <script src="<?php echo base_url('js/admin/series_manage.js')?>" type="text/javascript"></script>
+<script src="<?php echo base_url('lib/KindEditor/kindeditor-all-min.js')?>"></script>
+<script src="<?php echo base_url('lib/KindEditor/lang/zh-CN.js')?>"></script>
 
 	<div id="wrapper">
         <div class="sep20"></div>
@@ -80,7 +82,7 @@
                                         								</table>
                                         							</td>
                                         						</tr>
-                                            					<tr><td>简介  <?php echo $item['brief']?></td></tr>
+                                            					<tr><td><?php echo $item['brief']?></td></tr>
                                        						</table>
                                     					</div>
                                 					</div>
@@ -88,7 +90,7 @@
                             				</div>    
                             				<div class="panel-footer">
                                 				<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete_series_modal" data-id="<?php echo $item['id'];?>" data-title="<?php echo $item['title'];?>">删除</button>
-                                           		<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modify_series_modal" data-title="<?php echo $item['title']?>" data-brief="<?php echo $item['brief']?>" data-amount="<?php echo $item['amount']?>" data-id="<?php echo $item['id']?>" data-status="<?php echo $item['status']?>">设置</button>
+                                           		<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#modify_series_modal" data-id="<?php echo $item['id']?>">设置</button>
                                             	<a class="btn btn-primary btn-xs" href="<?php echo base_url('index.php/admin/video_manage/video_list/'.$item['id'])?>">分集列表</a>
                             				</div>
                         				</div>
@@ -157,9 +159,9 @@
         </div>
     </div>
     
-       <!--添加视频模态框-->
+    <!--添加视频模态框-->
     <div class="modal fade" role="dialog" id="add_series_modal" aria-labelledby="myModalLabel_add_series">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -169,26 +171,26 @@
                     <form class="form-horizontal" id="add_series_form" enctype="multipart/form-data" method="post" name="add_series_form">
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">标题</label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-9">
                                 <input id="title" type="text" class="form-control" name="title" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="brief" class="col-sm-2 control-label">简介</label>
-                            <div class="col-sm-8">
-                                <textarea id="brief" class="form-control" wrap="hard" name="brief"></textarea>
+                            <div class="col-sm-9">
+                                <textarea id="brief" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="cover" class="col-sm-2 control-label">封面图片</label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-9">
                                 <input id="cover" type="file" class="form-control" name="cover" />
                                 <p class="help-block">请选择视频封面图片(png gif jpg bmp jpeg 图片大小200 * 200)</p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="is_open" class="col-sm-2 control-label"></label>
-                            <div class="col-sm-8">
+                            <div class="col-sm-9">
                                 <div class="checkbox">
                                     <label>
                                         <input id="is_open" type="checkbox" value="" />是否启用
@@ -215,13 +217,18 @@
     
        <!--修改视频信息模态框-->
     <div class="modal fade" role="dialog" id="modify_series_modal" aria-labelledby="myModalLabel_modify_series">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel_modify_series">设置</h4>
                 </div>
                 <div class="modal-body">
+                	<div id="download_progress" class="progress collapse">
+                       <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                            <span id="progress_data"></span>
+                       </div>
+                    </div>
                     <form class="form-horizontal" id="modify_series_form">
                         <div class="form-group">
                             <label for="title" class="col-sm-2 control-label">标题</label>
@@ -232,7 +239,7 @@
                         <div class="form-group">
                             <label for="brief" class="col-sm-2 control-label">简介</label>
                             <div class="col-sm-9">
-                                <textarea id="brief" class="form-control" wrap="hard" ></textarea>
+                                <textarea id="modify_brief" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -259,7 +266,7 @@
                             </div>
                         </div>
                         <p id="input_info" class="message bg-info well collapse"></p>
-                        <div class="progress collapse">
+                        <div id="upload_progress" class="progress collapse">
                             <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
                                 <span id="progress_data"></span>
                             </div>

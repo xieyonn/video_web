@@ -105,7 +105,7 @@ class Video_manage extends CI_Controller
 	
 	public function add_series()
 	{
-		$post = $this->input->post(NULL, TRUE);
+		$post = $_POST;
 		if(isset($post['title']) && !empty($post['title']) && isset($post['file_type']))
 		{
 			if(! in_array($post['file_type'], $this->config->item('picture_types')))
@@ -164,7 +164,7 @@ class Video_manage extends CI_Controller
 	
 	public function edit_series()
 	{
-		$post = $this->input->post(NULL, TRUE);
+		$post = $_POST;
 		$this->load->model('Series_model');
 		if(!empty($post['file_type']) && $_FILES['cover']['error'] == UPLOAD_ERR_OK && $_FILES['cover']['size'] > 0)
 		{
@@ -476,5 +476,22 @@ class Video_manage extends CI_Controller
 		$this->load->model('Videos_model');
 		$this->Videos_model->edit($video);
 		echo json_encode('修改成功');
+	}
+	
+	public function get_series()
+	{
+		$post = $this->input->post(NULL, TRUE);
+		if(! empty($post['id']))
+		{
+			$this->load->model('Series_model');
+			$data = $this->Series_model->get_series_by_id($post['id']);
+			$json_data = json_encode($data);
+			header('Content-Length: '.strlen($json_data));
+			echo $json_data;
+		}
+		else 
+		{
+			echo json_encode("请求为空");
+		}
 	}
 }

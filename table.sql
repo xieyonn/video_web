@@ -23,8 +23,8 @@ CREATE TABLE articles (
 
 CREATE TABLE configs (
   id int(11) NOT NULL AUTO_INCREMENT,
-  key varchar(255) NOT NULL,
-  value varchar(255) NOT NULL,
+  key_d varchar(255) NOT NULL,
+  value_d varchar(255) NOT NULL,
   PRIMARY KEY (id)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
@@ -79,7 +79,7 @@ CREATE TABLE videos (
   PRIMARY KEY (id)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
-INSERT INTO configs (key, value) VALUES ('logo', 'NEoKMqD2E7fzRuSZ7TGH0Urizf5nhq.jpg');
-INSERT INTO configs (key, value) VALUES ('site_title', '武汉大学计算机学院');
-INSERT INTO configs (key, value) VALUES ('site_name', '武汉大学计算机学院');
+INSERT INTO configs (key_d, value_d) VALUES ('logo', 'NEoKMqD2E7fzRuSZ7TGH0Urizf5nhq.jpg');
+INSERT INTO configs (key_d, value_d) VALUES ('site_title', '武汉大学计算机学院');
+INSERT INTO configs (key_d, value_d) VALUES ('site_name', '武汉大学计算机学院');
 INSERT INTO admins (id, user_name, nick_name, password, create_time, last_login_time, type) VALUES ('1', 'admin', 'admin', 'bdc2d12f90867717d1bbc5bc01bb614f', '2016-04-14 19:32:05', '2016-04-24 23:22:31', '0');

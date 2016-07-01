@@ -78,4 +78,18 @@ class Articles extends CI_Controller
 		);
 		$this->load->view('article', $param);
 	}
+	
+	public function download()
+	{
+		$file = $this->uri->segment(3);
+
+		$file_path = './'.$this->config->item('articles_dir_name').'/files/'.$file;
+		if(!file_exists($file_path))
+		{
+			show_error("文件不存在");
+		}
+		
+		$this->load->helper('download');
+		force_download($file_path, NULL);
+	}
 }

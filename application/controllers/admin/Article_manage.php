@@ -17,7 +17,7 @@ class Article_manage extends CI_Controller
 		$this->load->model('Articles_model');
 	}
 	
-	function index()
+	public function index()
 	{
 		$articles = $this->Articles_model->get(1, $this->items_per_page);
 		$articles_count = $this->Articles_model->count_all_articles();
@@ -33,9 +33,9 @@ class Article_manage extends CI_Controller
 		$this->load->view('admin/articles', $param);
 	}
 	
-	function add()
+	public function add()
 	{
-		$post = $this->input->post(NULL, TRUE);
+		$post = $_POST;
 		if(isset($post['title']) && isset($post['indexing']) && isset($post['content']) && isset($post['status']))
 		{		
 			$article = array(
@@ -57,7 +57,7 @@ class Article_manage extends CI_Controller
 		}
 	}
 	
-	function delete()
+	public function delete()
 	{
 		if(! $this->input->is_ajax_request())
 		{
@@ -76,9 +76,9 @@ class Article_manage extends CI_Controller
 		}
 	}
 	
-	function update()
+	public function update()
 	{	
-		$post = $this->input->post(NULL, TRUE);
+		$post = $_POST;
 		$article = array(
 				'id' => $post['id'],
 				'title' => $post['title'],
@@ -90,7 +90,7 @@ class Article_manage extends CI_Controller
 		echo json_encode('修改成功');
 	}
 	
-	function get_article()
+	public function get_article()
 	{
 		$post = $this->input->post(NULL, TRUE);
 		if(isset($post['id']) && !empty($post['id']))
@@ -106,7 +106,7 @@ class Article_manage extends CI_Controller
 		}
 	}
 	
-	function get_content()
+	public function get_content()
 	{
 		$post = $this->input->post(NULL, TRUE);
 		$data = $this->Articles_model->get_by_id($post['id']);
@@ -114,18 +114,12 @@ class Article_manage extends CI_Controller
 		echo json_encode($data['content']);
 	}
 	
-	function upload_image()
+	public function upload_file()
 	{
 		$articles_path = './'.$this->config->item('articles_dir_name');
 		if(! file_exists($articles_path))
 		{
 			mkdir($articles_path);
-		}
-		
-		$save_path = './'.$articles_path.'/images_attach/';
-		if(! file_exists($save_path))
-		{
-			mkdir($save_path);
 		}
 		
 		if($_FILES['imgFile']['error'] == UPLOAD_ERR_OK && $_FILES['imgFile']['size'] > 0)
@@ -135,26 +129,50 @@ class Article_manage extends CI_Controller
 			$file_ext = array_pop($temp_arr);
 			$file_ext = trim($file_ext);
 			$file_ext = strtolower($file_ext);
-			if(! in_array($file_ext, $this->config->item('picture_types')))
-			{
-				echo json_encode(array('error' => 1, 'message' => '不支持的图片类型'));
-				return;
-			}
 			
-			$save_name = date("YmdHis",time()).get_rand_char(5).'.'.$file_ext;
-			$save_path .= $save_name;
-			if(move_uploaded_file($_FILES['imgFile']['tmp_name'], $save_path))
+			if(in_array($file_ext, $this->config->item('picture_types')))
 			{
-				echo json_encode(array('error' => 0, 'url' => base_url($this->config->item('articles_dir_name').'/images_attach/'.$save_name)));
-			}
-			else 
+				//保存图片
+				$image_path = $articles_path.'/images/';
+				if(! file_exists($image_path))
+				{
+					mkdir($image_path);
+				}
+				$save_name = date("YmdHis",time()).get_rand_char(5).'.'.$file_ext;
+				$image_path .= $save_name;
+				if(move_uploaded_file($_FILES['imgFile']['tmp_name'], $image_path))
+				{
+					echo json_encode(array('error' => 0, 'url' => base_url($this->config->item('articles_dir_name').'/images/'.$save_name)));
+				}
+				else
+				{
+					echo $json->encode(array('error' => 1, 'message' => '保存失败'));
+				}
+			}else if(in_array($file_ext, $this->config->item('file_types')))
 			{
-				echo $json->encode(array('error' => 1, 'message' => '保存失败'));
-			}
+				$file_path = $articles_path.'/files/';
+				if(! file_exists($file_path))
+				{
+					mkdir($file_path);
+				}
+				$save_name = date("YmdHis",time()).get_rand_char(5).'.'.$file_ext;
+				$file_path .= $save_name;
+				if(move_uploaded_file($_FILES['imgFile']['tmp_name'], $file_path))
+				{
+					echo json_encode(array('error' => 0, 'url' => base_url('index.php/articles/download/'.$save_name)));
+				}
+				else
+				{
+					echo $json->encode(array('error' => 1, 'message' => '保存失败'));
+				}
+			}else{
+				echo json_encode(array('error' => 1, 'message' => '不支持的文件类型'));
+				return;
+			}		
 		}
 	}
 	
-	function search()
+	public function search()
 	{
 		$search = urldecode($this->uri->segment(4, ''));
 		$page_index = $this->uri->segment(5, 1);
@@ -178,7 +196,7 @@ class Article_manage extends CI_Controller
 		$this->load->view('admin/articles', $param);
 	}
 	
-	function paging()
+	public function paging()
 	{
 		$articles_count = $this->Articles_model->count_all_articles();
 		$page_index = $this->uri->segment(4, 1);

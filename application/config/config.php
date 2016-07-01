@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://172.16.253.110/';
+$config['base_url'] = 'http://localhost/';
 
 /*
 |--------------------------------------------------------------------------
@@ -527,3 +527,5 @@ $config['video_types'] = array('rmvb', 'mp4', '3gp', 'mpg ', 'mpeg', 'wmv', 'avi
 
 //保存文章路径
 $config['articles_dir_name'] = 'articles';
+
+$config['file_types'] = array('zip', 'rar', 'doc', 'docx', 'pdf');
